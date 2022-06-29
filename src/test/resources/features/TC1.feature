@@ -1,4 +1,4 @@
-@wip
+
 Feature: User should be able to add mentions about only department employees.
   User Story:As a user, I should be able to add link, insert video, mention, quote, add tag in Appreciation
 
