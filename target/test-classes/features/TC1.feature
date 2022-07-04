@@ -1,21 +1,54 @@
-@wip
-Feature: User should be able to add mentions about only department employees.
-  User Story:As a user, I should be able to add link, insert video, mention, quote, add tag in Appreciation
 
- Scenario:
+Feature:To test link,insert video.mention,quote and tag in Assertion
+
+
+  Background:
     Given user is on the homepage
-    When user clicks the "More" drop down
-    When user click the "Appreciation"
-    When user clicks the mention sign button
-    When user writes mention on blockquote  page
-    When user adds mention to Sales Department Employees
-    Then user click save button
+    Given user clicks the More drop down
+    Given  user click the Appreciation
 
-   Scenario:
-     Given user is on the homepage
-     When user clicks the "More" drop down
-     When user click the "Appreciation"
-     When user clicks the mention sign button
-     When user writes mention on blockquote  page
-     When user adds mention to All Employees
-     Then user click save button
+  Scenario: User should be able to attach a link to the specified text.
+    When user clicks the link sign button
+    When user texts to textBox, uploads link
+    When user click the send button
+    Then  user sees the attached link on the message box
+
+
+
+  Scenario: User should be able to insert YouTube and Vimeo videos.
+    When user clicks the video button
+    When User pasts the URL of videos and saves
+    When user click the send button
+    Then user sees the attached video on the box
+
+
+
+
+  Scenario: : User should be able to add tags to messages.
+    When user clicks the tag button
+    When user texts the text on the text input box and clicks add
+    Then user sees the attach tag
+
+  Scenario: User should be able to remove tags before sending the message
+    When user clicks the tag button
+    When user texts the text on the text input box and clicks add
+    When user clicks the delete sign
+@wip
+  Scenario:User should be able to add quotes.
+    When user clicks the quotes button
+    When User writes a quote  with quotation mark
+    When user click the send button
+    Then user sees the quote on message on the Active Stream
+
+  Scenario: User should be able to add mentions about only department employees.
+    When user clicks the mention sign button
+    When user chooses a department employee
+    When user click the send button
+    Then user sees the mail of chosen employees
+
+
+
+
+
+
+
