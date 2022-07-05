@@ -5,8 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class InsertVideoPage {
-    public InsertVideoPage() {
+public class VideoInsertPage {
+
+    public VideoInsertPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -27,5 +28,6 @@ public class InsertVideoPage {
 
     @FindBy(xpath = "//span[contains(text(),'[FVID404] The video was not found;')]")
     public WebElement alertyTube;
+
 
 }

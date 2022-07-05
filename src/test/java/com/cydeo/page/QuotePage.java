@@ -10,7 +10,6 @@ public class QuotePage {
     public QuotePage() {
         PageFactory.initElements(Driver.getDriver(),this);
     }
-
     @FindBy(xpath = "//span[@title='Quote text']")
     public WebElement quoteButton;
 
@@ -20,8 +19,15 @@ public class QuotePage {
     @FindBy(xpath = "//iframe[@class='bx-editor-iframe']")
     public WebElement iFrame;
 
+    @FindBy(xpath = "//div[@class='feed-post-text-block-inner-inner']")
+    public WebElement display;
+
+    @FindBy(id  ="blog-submit-button-save")
+    public WebElement sendButton;
 
 
 
 
-    }
+
+
+}

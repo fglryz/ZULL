@@ -17,64 +17,86 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class TC1Step_definition {
 
     LoginPage loginPage = new LoginPage();
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
     AddMentionPage addMentionPage = new AddMentionPage();
-    InsertVideoPage insertVideoPage = new InsertVideoPage();
     LinkPage linkPage = new LinkPage();
-    WebDriverWait wait=new WebDriverWait(Driver.getDriver(),5);
-    TagPage tagPage=new TagPage();
-    QuotePage quotePage=new QuotePage();
-    uploadPage uploadPage=new uploadPage();
+    QuotePage quotePage = new QuotePage();
+    TagPage tagPage = new TagPage();
+    VideoInsertPage videoInsertPage = new VideoInsertPage();
+    Actions actions = new Actions(Driver.getDriver());
+    UploadPage uploadPage = new UploadPage();
 
     @Given("user is on the homepage")
-    public void userIsOnTheHomepage() {
+    public void user_is_on_the_homepage() {
         Driver.getDriver().get(ConfigurationReader.getProperty("url"));
-        loginPage.inputEmail.sendKeys(ConfigurationReader.getProperty("Mail"));
-        loginPage.inputPassword.sendKeys(ConfigurationReader.getProperty("Password"));
+        //Driver.getDriver().get("https://qa.azulcrm.com/");
+        loginPage.inputEmail.sendKeys("helpdesk1@cybertekschool.com");
+        loginPage.inputPassword.sendKeys("UserUser");
         loginPage.logInButton.click();
     }
     @Given("user clicks the More drop down")
-    public void userClicksTheMoreDropDown() {
-       addMentionPage.moreButton.click();
+    public void user_clicks_the_more_drop_down() {
+        addMentionPage.moreButton.click();
     }
     @Given("user click the Appreciation")
-    public void userClickTheAppreciation() {
+    public void user_click_the_appreciation() {
         addMentionPage.appreciationButton.click();
+
     }
 
-
     @When("user clicks the link sign button")
-    public void userClicksTheLinkSignButton() {
+    public void user_clicks_the_link_sign_button() {
         linkPage.LinkSignButton.click();
     }
     @When("user texts to textBox, uploads link")
-    public void userTextsToTextBoxUploadsLink() {
-        // wait.until(ExpectedConditions.visibilityOf(linkPage.LinkTextButton));
-        linkPage.LinkTextButton.sendKeys("How to use Jira "  );
+    public void user_texts_to_text_box_uploads_link() {
+        linkPage.LinkTextButton.sendKeys("How to use Jira ");
         linkPage.uploadLink.sendKeys("https://www.youtube.com/watch?v=GWxMTvRGIpc");
-        linkPage.saveButton.click();
     }
-    @Then("user sees the attached link on the message box")
-    public void userSeesTheAttachedLinkOnTheMessageBox() {
-        Assert.assertTrue(loginPage.activeStream.isDisplayed());
-    }
-
-    @When("user clicks the video button")
-    public void userClicksTheVideoButton() {
-        insertVideoPage.videoButton.click();
-    }
-    @When("User pasts the {string} and saves")
-    public void userPastsTheAndSaves(String string) {
-
-        insertVideoPage.videoUrl.sendKeys("https://vimeo.com/76979871");
-        insertVideoPage.saveButton.click();
+    @When("user click the save button")
+    public void userClickTheSaveButton() {
+        linkPage.LinkSaveButton.click();
     }
     @When("user click the send button")
     public void userClickTheSendButton() {
-        loginPage.send.click();
+        // JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        //js.executeScript("arguments[0].click();", loginPage.sendButton);
+        linkPage.sendButton.click();
     }
-    @Then("user sees the attached video on the box")
-    public void userSeesTheAttachedVideoOnTheBox() {
-        Assert.assertTrue(loginPage.activeStream.isDisplayed());
+    @Then("user sees the link on the message box")
+    public void userSeesTheLinkOnTheMessageBox() {
+        wait.until(ExpectedConditions.visibilityOf(linkPage.display));
+        Assert.assertTrue(linkPage.display.isDisplayed());
+
+    }
+
+
+    @When("user clicks the mention sign button")
+    public void userClicksTheMentionSignButton() {
+        addMentionPage.addMentionButton.click();
+    }
+    @When("user add member from   department employees")
+    public void userAddMemberFromDepartmentEmployees() {
+        addMentionPage.chosenMail.click();
+
+
+        //addMentionPage.employeeDeleteIcon.click();
+    }
+    @When("user sees the chosen mail on the message box")
+    public void userSeesTheChosenMailOnTheMessageBox() {
+
+        Driver.getDriver().switchTo().frame(loginPage.IframeSave);
+        addMentionPage.chosenMail.isDisplayed();
+        Driver.getDriver().switchTo().defaultContent();
+        addMentionPage.sendButton.click();
+
+    }
+    @Then("user sees the mail of chosen employees")
+    public void userSeesTheMailOfChosenEmployees() {//wait.until(ExpectedConditions.visibilityOf(addMentionPage.chosenMail));
+        String actual = "hr99@cybertekschool.com";
+        String expected = addMentionPage.displayChosenMail.getText();
+        Assert.assertEquals(expected, actual);
+
     }
 
 
@@ -94,8 +116,28 @@ public class TC1Step_definition {
     @Then("user sees the attach tag")
     public void userSeesTheAttachTag() {
         Assert.assertTrue(tagPage.displayBox.isDisplayed());
+
     }
 
+
+    @When("user clicks the video button")
+    public void userClicksTheVideoButton() {
+        videoInsertPage.videoButton.click();
+
+    }
+    @When("User upload the URL of videos and saves")
+    public void userUploadTheURLOfVideosAndSaves() {
+        videoInsertPage.videoUrl.sendKeys("https://vimeo.com/76979871");
+        videoInsertPage.saveButton.click();
+    }
+    @Then("user sees the attached video on the box")
+    public void userSeesTheAttachedVideoOnTheBox() {
+        String actual = "FVID403] Access to video file was denied.;|";
+        String expected = videoInsertPage.message.getText();
+
+        Assert.assertEquals(expected, actual);
+
+    }
 
     @When("user clicks the quotes button")
     public void userClicksTheQuotesButton() {
@@ -103,48 +145,23 @@ public class TC1Step_definition {
     }
     @When("User writes a quote  with quotation mark")
     public void userWritesAQuoteWithQuotationMark() {
-        quotePage.input.sendKeys("Happy Year");
-        BrowserUtils.waitForVisibility(loginPage.send,5);
-        loginPage.send.click();
+        Driver.getDriver().switchTo().frame(quotePage.iFrame);
+        quotePage.input.sendKeys("Happy");
+        Driver.getDriver().switchTo().defaultContent();
+        //quotePage.sendButton.click();
+        loginPage.sendButton.click();
     }
     @Then("user sees the quote on message on the Active Stream")
     public void userSeesTheQuoteOnMessageOnTheActiveStream() {
-        Assert.assertTrue(loginPage.activeStream.isDisplayed());
-    }
-
-
-    @When("user clicks the mention sign button")
-    public void userClicksTheMentionSignButton() {
-        addMentionPage.addMentionButton.click();
-    }
-    @When("user chooses a department employee")
-    public void userChoosesADepartmentEmployee() {
-        addMentionPage.chosenMail.click();
-    }
-    @Then("user sees the mail of chosen employees")
-    public void userSeesTheMailOfChosenEmployees() {
-        Assert.assertTrue(addMentionPage.chosenMail.isDisplayed());
-    }
-
-
-    @When("User pasts the URL of videos and saves")
-    public void userPastsTheURLOfVideosAndSaves() {
+        //Thread.sleep(5);
+        wait.until(ExpectedConditions.visibilityOf(quotePage.display));
+        // String actual="Happy";
+        // String expected=quotePage.display.getText();
+        // Assert.assertEquals(expected,actual);
+        Assert.assertTrue(quotePage.display.isDisplayed());
 
     }
 
-
-    @When("user click the upload icon")
-    public void userClickTheUploadIcon() {
-        uploadPage.uploadIcon.click();
-    }
-
-    @When("user sees upload file box and clicks")
-    public void userSeesUploadFileBoxAndClicks() {
-        String jpegFilePath="/Users/atlantic/Desktop/USER STORY DATA/picture1.jpeg";
-        uploadPage.inputBox.sendKeys(jpegFilePath);
-        uploadPage.inputBox.click();
-
-    }
 
 
 }

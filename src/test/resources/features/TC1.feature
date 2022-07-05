@@ -10,21 +10,23 @@ Feature:To test link,insert video.mention,quote and tag in Assertion
   Scenario: User should be able to attach a link to the specified text.
     When user clicks the link sign button
     When user texts to textBox, uploads link
+    When user click the save button
     When user click the send button
-    Then  user sees the attached link on the message box
+    Then user sees the link on the message box
 
-
-
-  Scenario: User should be able to insert YouTube and Vimeo videos.
-    When user clicks the video button
-    When User pasts the URL of videos and saves
+  Scenario: User should be able to add mentions about only department employees.
+    When user clicks the mention sign button
+    When user add member from   department employees
+    And user click the send button
+    Then user sees the mail of chosen employees
+  @wip
+  Scenario:User should be able to add quotes.
+    When user clicks the quotes button
+    When User writes a quote  with quotation mark
     When user click the send button
-    Then user sees the attached video on the box
+    Then user sees the quote on message on the Active Stream
 
-
-
-
-  Scenario: : User should be able to add tags to messages.
+  Scenario: User should be able to add tags to messages.
     When user clicks the tag button
     When user texts the text on the text input box and clicks add
     Then user sees the attach tag
@@ -33,22 +35,12 @@ Feature:To test link,insert video.mention,quote and tag in Assertion
     When user clicks the tag button
     When user texts the text on the text input box and clicks add
     When user clicks the delete sign
-@wip
-  Scenario:User should be able to add quotes.
-    When user clicks the quotes button
-    When User writes a quote  with quotation mark
+
+  Scenario: User should be able to insert YouTube and Vimeo videos.
+    When user clicks the video button
+    When User upload the URL of videos and saves
     When user click the send button
-    Then user sees the quote on message on the Active Stream
-
-  Scenario: User should be able to add mentions about only department employees.
-    When user clicks the mention sign button
-    When user chooses a department employee
-    When user click the send button
-    Then user sees the mail of chosen employees
-
-
-
-
+    Then user sees the attached video on the box
 
 
 

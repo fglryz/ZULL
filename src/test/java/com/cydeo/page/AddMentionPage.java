@@ -9,6 +9,7 @@ public class AddMentionPage  {
     public AddMentionPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
+
     @FindBy(xpath = "//span[@id='feed-add-post-form-link-text']")
     public WebElement moreButton;
 
@@ -20,19 +21,34 @@ public class AddMentionPage  {
 
     @FindBy(xpath = "//blockquote[@class='bxhtmled-quote']")
     public WebElement quoteText;
-    @FindBy(xpath = "//input[@id='feed-add-post-destination-input']")
+
+    @FindBy(xpath = "//*[@id=\"bx-destination-tag\"]")
     public WebElement addTo;
 
     @FindBy(id = "blog-submit-button-save")
     public WebElement sendButton;
 
-    @FindBy(xpath = "//*[@id=\"blg-post-img-867\"]/div[2]/span/a")
+    @FindBy(linkText = "SalesDepartment")
     public WebElement SalesDepText;
 
-    @FindBy(linkText = "helpdesk26@cybertekschool.com")
+    @FindBy(xpath ="//div[contains(text(),'hr99@cybertekschool.com')]")
     public WebElement chosenMail;
-    @FindBy(xpath = "(//a[contains(text(),'hr101@cybertekschool.com')])[1]\n")
-    public WebElement displayChosenMail;
 
+    @FindBy(xpath = "//span[contains(text(),'All employees')]")
+    public WebElement allEmployees;
+
+    @FindBy(xpath = "//*[@id=\"bx-html-editor-iframe-cnt-idPostFormLHE_blogPostForm\"]/iframe")
+    public WebElement messageIframe;
+    @FindBy(xpath = "//body")
+    public WebElement messageText;
+
+    @FindBy(xpath = "//span[@class='popup-window-close-icon']")
+    public WebElement deleteButton;
+
+    @FindBy(xpath = "//span[@class='feed-add-post-del-but']")
+    public WebElement employeeDeleteIcon;
+
+    @FindBy(xpath = "//a[contains(text(),'hr99@cybertekschool.com')][1]")
+    public WebElement displayChosenMail;
 
 }

@@ -10,22 +10,22 @@ public class LinkPage extends LoginPage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-@FindBy(xpath = "//span[@title='Link']")
+    @FindBy(xpath = "//span[@title='Link']")
     public WebElement LinkSignButton;
 
-@FindBy(xpath = "//input[@id='linkidPostFormLHE_blogPostForm-text']")
+    @FindBy(xpath = "//input[@id='linkidPostFormLHE_blogPostForm-text']")
     public WebElement LinkTextButton;
 
-@FindBy(id = "linkidPostFormLHE_blogPostForm-href")
+    @FindBy(xpath = "//*[@id='linkidPostFormLHE_blogPostForm-href']")
     public WebElement uploadLink;
 
-@FindBy(xpath = "//input[@id='undefined']")
-    public WebElement saveButton;
-
-
-@FindBy(xpath = "//a[.='how to use jira']")
+    @FindBy(xpath = "(//a[@href='https://www.youtube.com/watch?v=GWxMTvRGIpc'])[1]")
     public WebElement display;
 
+    @FindBy(xpath = "//input[@id='undefined']")
+    public WebElement LinkSaveButton;
+    @FindBy(id  ="blog-submit-button-save")
+    public WebElement sendButton;
 
 
 
