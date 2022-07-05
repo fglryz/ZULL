@@ -48,13 +48,13 @@ public class TC1Step_definition {
     public void user_clicks_the_link_sign_button() {
         linkPage.LinkSignButton.click();
     }
-    @When("user texts to textBox, uploads link")
-    public void user_texts_to_text_box_uploads_link() {
+    @When("user texts to textBox {string}, uploads {string} link")
+    public void userTextsToTextBoxUploadsLink(String text, String url) {
         linkPage.LinkTextButton.sendKeys("How to use Jira ");
         linkPage.uploadLink.sendKeys("https://www.youtube.com/watch?v=GWxMTvRGIpc");
     }
-    @When("user click the save button")
-    public void userClickTheSaveButton() {
+    @When("user click the {string} button")
+    public void userClickTheButton(String save) {
         linkPage.LinkSaveButton.click();
     }
     @When("user click the send button")
@@ -63,11 +63,10 @@ public class TC1Step_definition {
         //js.executeScript("arguments[0].click();", loginPage.sendButton);
         linkPage.sendButton.click();
     }
-    @Then("user sees the link on the message box")
-    public void userSeesTheLinkOnTheMessageBox() {
+    @Then("user sees the link {string} on the message box")
+    public void userSeesTheLinkOnTheMessageBox(String link) {
         wait.until(ExpectedConditions.visibilityOf(linkPage.display));
         Assert.assertTrue(linkPage.display.isDisplayed());
-
     }
 
 
@@ -75,12 +74,10 @@ public class TC1Step_definition {
     public void userClicksTheMentionSignButton() {
         addMentionPage.addMentionButton.click();
     }
-    @When("user add member from   department employees")
-    public void userAddMemberFromDepartmentEmployees() {
+    @When("user add member {string} from department employees")
+    public void userAddMemberFromDepartmentEmployees(String chosenMail) {
         addMentionPage.chosenMail.click();
 
-
-        //addMentionPage.employeeDeleteIcon.click();
     }
     @When("user sees the chosen mail on the message box")
     public void userSeesTheChosenMailOnTheMessageBox() {
@@ -91,12 +88,11 @@ public class TC1Step_definition {
         addMentionPage.sendButton.click();
 
     }
-    @Then("user sees the mail of chosen employees")
-    public void userSeesTheMailOfChosenEmployees() {//wait.until(ExpectedConditions.visibilityOf(addMentionPage.chosenMail));
+    @Then("user sees the mail of chosen employees {string}")
+    public void userSeesTheMailOfChosenEmployees(String chosen) {
         String actual = "hr99@cybertekschool.com";
         String expected = addMentionPage.displayChosenMail.getText();
         Assert.assertEquals(expected, actual);
-
     }
 
 
@@ -104,19 +100,24 @@ public class TC1Step_definition {
     public void userClicksTheTagButton() {
         tagPage.tagButton.click();
     }
-    @When("user texts the text on the text input box and clicks add")
-    public void userTextsTheTextOnTheTextInputBoxAndClicksAdd() {
-        tagPage.tagInputButton.sendKeys("Be Happy");
+
+    @When("user texts {string} on the text input box and clicks add")
+    public void userTextsOnTheTextInputBoxAndClicksAdd(String text) {
+        tagPage.tagInputButton.sendKeys("Happy");
+        tagPage.addButton.click();
+    }
+    @When("user texts the {string} on the text input box and clicks add")
+    public void userTextsTheOnTheTextInputBoxAndClicksAdd(String text) {
+        tagPage.tagInputButton.sendKeys("Happy");
         tagPage.addButton.click();
     }
     @When("user clicks the delete sign")
     public void userClicksTheDeleteSign() {
         tagPage.deleteButton.click();
     }
-    @Then("user sees the attach tag")
-    public void userSeesTheAttachTag() {
+    @Then("user sees {string} on the Actice Stream")
+    public void userSeesOnTheActiceStream(String tag) {
         Assert.assertTrue(tagPage.displayBox.isDisplayed());
-
     }
 
 
@@ -125,19 +126,19 @@ public class TC1Step_definition {
         videoInsertPage.videoButton.click();
 
     }
-    @When("User upload the URL of videos and saves")
-    public void userUploadTheURLOfVideosAndSaves() {
+    @When("User upload the URL of videos {string} and saves")
+    public void userUploadTheURLOfVideosAndSaves(String url) {
         videoInsertPage.videoUrl.sendKeys("https://vimeo.com/76979871");
         videoInsertPage.saveButton.click();
     }
-    @Then("user sees the attached video on the box")
-    public void userSeesTheAttachedVideoOnTheBox() {
+    @Then("user sees the {string} on the box")
+    public void userSeesTheOnTheBox(String attachedVideo) {
         String actual = "FVID403] Access to video file was denied.;|";
         String expected = videoInsertPage.message.getText();
 
         Assert.assertEquals(expected, actual);
-
     }
+
 
     @When("user clicks the quotes button")
     public void userClicksTheQuotesButton() {
