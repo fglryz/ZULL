@@ -29,7 +29,7 @@ Feature:To test link,insert video.mention,quote and tag in Assertion
   Scenario: User should be able to add tags to messages.
     When user clicks the tag button
     When user texts "Happy" on the text input box and clicks add
-    Then user sees "Happy" on the Actice Stream
+    Then user sees "Happy" on the Active Stream
 
   Scenario: User should be able to remove tags before sending the message
     When user clicks the tag button

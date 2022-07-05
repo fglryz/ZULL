@@ -115,10 +115,11 @@ public class TC1Step_definition {
     public void userClicksTheDeleteSign() {
         tagPage.deleteButton.click();
     }
-    @Then("user sees {string} on the Actice Stream")
-    public void userSeesOnTheActiceStream(String tag) {
+    @Then("user sees {string} on the Active Stream")
+    public void userSeesOnTheActiveStream(String tag) {
         Assert.assertTrue(tagPage.displayBox.isDisplayed());
     }
+
 
 
     @When("user clicks the video button")
