@@ -13,7 +13,7 @@ public class TagPage {
         @FindBy(xpath = "//span[@title='Add tag']")
         public WebElement tagButton;
 
-        @FindBy(xpath = "//input[@id='TAGS_blogPostForm67abSn']")
+        @FindBy(id = "TAGS_blogPostForm67abSn")
         public WebElement tagInputButton;
 
         @FindBy(xpath= "//span[@class='popup-window-button']")
@@ -21,9 +21,20 @@ public class TagPage {
 
         @FindBy(xpath = "(//span[@class='feed-add-post-del-but'])[1]")
         public WebElement deleteButton;
-        @FindBy(id = "post-tags-container-blogPostForm")
+
+        @FindBy(id = "blog_post_outer_1281")
         public WebElement displayBox;
 
+        @FindBy(xpath = "//*[@id=\"bx-html-editor-iframe-cnt-idPostFormLHE_blogPostForm\"]/iframe")
+        public WebElement messageIFrame;
 
+        @FindBy(xpath = "//body")
+        public WebElement input;
 
+        @FindBy(id = "post-tags-container-blogPostForm")
+        public WebElement tagsAddButton;
+        @FindBy(id  ="blog-submit-button-save")
+        public WebElement sendButton;
+        @FindBy(xpath = "//button[contains(text(),'Send')]")
+        public  WebElement send;
 }

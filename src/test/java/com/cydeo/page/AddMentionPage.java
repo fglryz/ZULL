@@ -9,7 +9,6 @@ public class AddMentionPage  {
     public AddMentionPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
-
     @FindBy(xpath = "//span[@id='feed-add-post-form-link-text']")
     public WebElement moreButton;
 
@@ -50,5 +49,6 @@ public class AddMentionPage  {
 
     @FindBy(xpath = "//a[contains(text(),'hr99@cybertekschool.com')][1]")
     public WebElement displayChosenMail;
+
 
 }

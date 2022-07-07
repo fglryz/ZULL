@@ -21,10 +21,10 @@ public class LoginPage {
 
 
     @FindBy(xpath = "//button[@id='blog-submit-button-save']")
-    public  WebElement sendButton;
+    public  WebElement saveButton;
 
     @FindBy(xpath = "//button[contains(text(),'Send')]")
-    public  WebElement send;
+    public  WebElement sendButton;
 
     @FindBy(xpath = "//input[@id='autosave_marker_2062e06956d7a8470d78561137294dd72']")
     public WebElement IframeSave;
